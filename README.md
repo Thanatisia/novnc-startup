@@ -58,7 +58,7 @@ Additionally,
 
 - Starting up
     ```console
-    docker run -itd --name novnc -p 8085:6080 -v "/path/to/novnc:/usr/share/novnc" -e VNC_WEB_CLIENT=/usr/share/novnc -e VNC_WEB_PORT=6080 -e VNC_SERVER_HOST_IP=localhost -e VNC_SERVER_HOST_PORT=5901 thanatisia/novnc
+    docker run -itd --name novnc -p 8080:6080 -v "/path/to/novnc:/usr/share/novnc" -e VNC_WEB_CLIENT=/usr/share/novnc -e VNC_WEB_PORT=6080 -e VNC_SERVER_HOST_IP=localhost -e VNC_SERVER_HOST_PORT=5901 thanatisia/novnc
     ```
 
 ### Using docker-compose

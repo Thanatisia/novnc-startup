@@ -58,7 +58,7 @@ RUN python3 -m venv $VIRTUAL_ENV && \
 ## Set Entry Point 
 # Default: websockify -D --web=/usr/share/novnc 6080 localhost:5901
 # ENTRYPOINT websockify ${OTHER_OPTIONS} --web=${VNC_WEB_CLIENT} ${VNC_WEB_PORT} ${VNC_SERVER_HOST_IP}:${VNC_SERVER_HOST_PORT}
-# ENTRYPOINT /usr/bin/websockify ${OTHER_OPTIONS} --web=${VNC_WEB_CLIENT} ${VNC_WEB_PORT} ${VNC_SERVER_HOST_IP}:${VNC_SERVER_HOST_PORT}
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT websockify ${OTHER_OPTIONS} --web=${VNC_WEB_CLIENT} ${VNC_WEB_PORT} ${VNC_SERVER_HOST_IP}:${VNC_SERVER_HOST_PORT}
+# ENTRYPOINT ["/bin/bash"]
 
 
