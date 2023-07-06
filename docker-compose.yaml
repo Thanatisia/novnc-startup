@@ -1,0 +1,40 @@
+# Docker-compose for Dockerfile
+version: "3.7"
+services:
+    novnc:
+        image: thanatisia/novnc:latest
+        container_name: novnc
+        build:
+            ## (Optional) Build definitions
+            ## this is if you are building from source
+            context: .
+            dockerfile: docker/Dockerfile
+        tty: true # To keep the terminal from exitting after completing; Equivalent to the '-t' flag in 'docker run'
+        stdin_open: true # To open standard input after completing entry point; Equivalent to the '-i' flag in 'docker run'
+        restart: unless-stopped
+        environment:
+            # Environment Variables
+            # VNC_WEB_CLIENT: "/usr/share/novnc" # The path to the VNC Web/browser-based client source file; Default '/usr/share/novnc'
+            # VNC_WEB_PORT: 6080 # The WebUI HTTP port number; Default: 6080
+            # VNC_SERVER_HOST_IP: "localhost" # The VNC Server Host IP address/domain; Default: localhost
+            # VNC_SERVER_HOST_PORT: 5901 # The VNC server port number; This port is equivalent to the port used to connect to the VNC server you set up; Default: 5901
+            # OTHER_OPTIONS: "-D" # The VNC Web/browser client other options; Default: '-D'
+            - VNC_WEB_CLIENT=/usr/share/novnc
+            - VNC_WEB_PORT=6080
+            - VNC_SERVER_HOST_IP=localhost
+            - VNC_SERVER_HOST_PORT=5901
+            - OTHER_OPTIONS=-D
+        ports:
+            # Port map/forward host system port to container port
+            # - [ip-address]:[host-system-port]:[container-port]
+            - 8085:6080 # The Websockify WebUI port number
+        volumes:
+            # Mount host system volume to container volume
+            # - [host-system-volume]:[container-volume]:[permission]
+            ## NoVNC WebUI
+            # - "/path/to/novnc/:/usr/share/novnc"
+            - "${PWD}/src/app/novnc:/usr/share/novnc"
+            ## For general sharing
+
+
+
